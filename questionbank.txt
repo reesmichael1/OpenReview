@@ -1,2 +1,4 @@
 1,Whose election was the result of negotiations that led to the end of Reconstruction?,Abraham Lincoln,Ulysses S. Grant,Rutherford B. Hayes,Andrew Johnson,3
 2,What percentage of registered voters were required to take the oath of loyalty for a state to be readmitted to the Union under Licoln's plan?,5,10,25,50,2
+3,What was the first state to be readmitted to the Union?,Tennessee,Texas,Mississippi,Louisiana,1
+4,What was the last state to be readmitted to the Union?,Tennessee,Texas,Mississippi,Louisiana,2
