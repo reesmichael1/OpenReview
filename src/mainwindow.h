@@ -15,6 +15,7 @@ public:
 signals:
     
 public slots:
+    void submit();
 
 private:
     QPushButton *submitButton;
@@ -25,7 +26,7 @@ private:
     QCheckBox *answer3;
     QCheckBox *answer4;
     QTextStream *dataStream;
-    QLineEdit *questionText;
+    QTextEdit *questionText;
     QWidget *centralWidget;
     QVector<int> returnQuestionIDVector();
     void readQuestionFromFile();

@@ -13,8 +13,10 @@ MainWindow::MainWindow()
     player2Score = new QSpinBox;
     player2Score->setReadOnly(true);
 
-    questionText = new QLineEdit;
+    questionText = new QTextEdit;
     questionText->setReadOnly(true);
+    questionText->setMaximumWidth(200);
+    questionText->setFixedWidth(240);
 
     answer1 = new QCheckBox;
     answer1->setAutoExclusive(true);
@@ -29,6 +31,7 @@ MainWindow::MainWindow()
     answer4->setAutoExclusive(true);
 
     submitButton = new QPushButton(tr("Submit"));
+    connect(submitButton, SIGNAL(clicked()), this, SLOT(submit()));
 
     QGridLayout *scoreLayout = new QGridLayout;
     scoreLayout->addWidget(player1Label, 0, 0);
@@ -37,6 +40,7 @@ MainWindow::MainWindow()
     scoreLayout->addWidget(player2Score, 1, 1);
 
     QVBoxLayout *answerLayout = new QVBoxLayout;
+    answerLayout->addWidget(questionText);
     answerLayout->addWidget(answer1);
     answerLayout->addWidget(answer2);
     answerLayout->addWidget(answer3);
@@ -141,4 +145,99 @@ void MainWindow::enterGameplay()
 {
     QVector<int> questionIDVector = returnQuestionIDVector();
     setQuestionText(questionIDVector);
+}
+
+void MainWindow::submit()
+{
+    QFile *questionBankFile = new QFile("questionbank.txt");
+    dataStream = new QTextStream(questionBankFile);
+
+    questionBankFile->open(QIODevice::ReadOnly | QIODevice::Text);
+
+    QString dataString = dataStream->readLine();
+    QStringList dataList = dataString.split(',');
+
+    while (dataList.at(1) != questionText->toPlainText())
+    {
+        dataString = dataStream->readLine();
+        dataList = dataString.split(',');
+    }
+
+    QMessageBox answerResult;
+
+    switch (dataList.at(6).toInt())
+    {
+
+    case 1:
+    {
+        if (answer1->isChecked())
+        {
+            answerResult.setText("Correct!");
+            answerResult.exec();
+        }
+
+        else
+        {
+            answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
+                                 .arg(dataList.at(2)));
+            answerResult.exec();
+        }
+    }
+        break;
+
+    case 2:
+    {
+        if (answer2->isChecked())
+        {
+            answerResult.setText("Correct!");
+            answerResult.exec();
+        }
+
+        else
+        {
+            answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
+                                 .arg(dataList.at(3)));
+            answerResult.exec();
+        }
+    }
+        break;
+
+
+    case 3:
+    {
+        if (answer3->isChecked())
+        {
+            answerResult.setText("Correct!");
+            answerResult.exec();
+        }
+
+        else
+        {
+            answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
+                                 .arg(dataList.at(4)));
+            answerResult.exec();
+        }
+    }
+        break;
+
+    case 4:
+    {
+        if (answer4->isChecked())
+        {
+            answerResult.setText("Correct!");
+            answerResult.exec();
+        }
+
+        else
+        {
+            answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
+                                 .arg(dataList.at(5)));
+            answerResult.exec();
+        }
+    }
+        break;
+
+    }
+
+    questionBankFile->close();
 }
