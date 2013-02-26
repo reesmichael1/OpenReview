@@ -25,6 +25,7 @@ private:
     QCheckBox *answer3;
     QCheckBox *answer4;
     QTextStream *dataStream;
+    QLineEdit *questionText;
     QWidget *centralWidget;
     QVector<int> returnQuestionIDVector();
     void readQuestionFromFile();

@@ -13,20 +13,19 @@ MainWindow::MainWindow()
     player2Score = new QSpinBox;
     player2Score->setReadOnly(true);
 
+    questionText = new QLineEdit;
+    questionText->setReadOnly(true);
+
     answer1 = new QCheckBox;
-    //answer1->setText("This is the first answer.");
     answer1->setAutoExclusive(true);
 
     answer2 = new QCheckBox;
-    //answer2->setText("This is the second answer.");
     answer2->setAutoExclusive(true);
 
     answer3 = new QCheckBox;
-    //answer3->setText("This is the third answer.");
     answer3->setAutoExclusive(true);
 
     answer4 = new QCheckBox;
-    //answer4->setText("This is the fourth answer.");
     answer4->setAutoExclusive(true);
 
     submitButton = new QPushButton(tr("Submit"));
@@ -53,7 +52,7 @@ MainWindow::MainWindow()
 
     setCentralWidget(centralWidget);
 
-    setWindowTitle(tr("Reconstruction Revealed"));
+    setWindowTitle(tr("Reconstruction"));
 
     enterGameplay();
 
@@ -121,6 +120,7 @@ void MainWindow::setQuestionText(QVector<int> questionIDVector)
         dataList = dataString.split(',');
         if (dataList.at(0).toInt() == questionID)
         {
+            questionText->setText(dataList.at(1));
             answer1->setText(dataList.at(2));
             answer2->setText(dataList.at(3));
             answer3->setText(dataList.at(4));
