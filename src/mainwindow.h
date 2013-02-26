@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QtGui>
+#include <QFile>
 
 class QCheckBox;
 
@@ -23,8 +24,13 @@ private:
     QCheckBox *answer2;
     QCheckBox *answer3;
     QCheckBox *answer4;
+    QTextStream *dataStream;
     QWidget *centralWidget;
     QVector<int> returnQuestionIDVector();
+    void readQuestionFromFile();
+    void setQuestionText(QVector<int> questionIDVector);
+    void enterGameplay();
+    int returnRandomNumber(int nMax);
 };
 
 #endif // MAINWINDOW_H
