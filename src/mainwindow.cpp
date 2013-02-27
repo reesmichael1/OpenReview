@@ -6,7 +6,7 @@ MainWindow::MainWindow()
 {
     player1Turn = true;
     correctAnswer = false;
-    questionIDVector = returnQuestionIDVector();
+    returnQuestionIDVector();
 
     QLabel *player1Label = new QLabel(tr("Player 1"));
     QLabel *player2Label = new QLabel(tr("Player 2"));
@@ -62,7 +62,7 @@ MainWindow::MainWindow()
 
     setWindowTitle(tr("Reconstruction"));
 
-    enterGameplay();
+    setQuestionText();
 
 }
 
@@ -105,14 +105,22 @@ void MainWindow::setQuestionText()
 
     int questionID = returnRandomNumber(questionIDVector.size());
 
-    for (int i = 0; i < questionIDVector.size(); i++)
-    {
-        if (questionIDVector.at(i) == questionID)
-        {
-            questionIDVector.remove(i);
-        }
-    }
+    QMessageBox msgBox;
 
+    /*for (int i = 0; i < questionIDVector.size(); i++)
+    {
+
+    }*/
+    int i = 0;
+        while (questionIDVector.at(i) != questionID)
+        {
+            msgBox.setText(tr("i is %1. questionIDVector.at(i) is %2. questionID is %3")
+                           .arg(i).arg(questionIDVector.at(i)).arg(questionID));
+            msgBox.exec();
+            i++;
+        }
+            questionIDVector.remove(i);
+    //}
 
     QFile *questionBankFile = new QFile("questionbank.txt");
     dataStream = new QTextStream(questionBankFile);
@@ -141,11 +149,6 @@ void MainWindow::setQuestionText()
         }
     }
 
-}
-
-void MainWindow::enterGameplay()
-{
-    setQuestionText();
 }
 
 void MainWindow::submit()
