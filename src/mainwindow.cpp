@@ -3,11 +3,14 @@
 #include <time.h>
 #include "mainwindow.h"
 
+int valueToWin = 10;
+
 MainWindow::MainWindow()
 {
-    valueToWin = 10;
     player1Turn = true;
     correctAnswer = false;
+    //valueToWin = 10;
+
     gameOver = false;
     questionIDVector = returnQuestionIDVector();
 
@@ -63,7 +66,7 @@ MainWindow::MainWindow()
 
     setCentralWidget(centralWidget);
 
-    setWindowTitle(tr("Reconstruction"));
+    setWindowTitle(tr("OpenReview"));
 
     setQuestionText();
 
@@ -122,6 +125,7 @@ void MainWindow::setQuestionText()
         playerWins.exec();
         gameOver = true;
     }
+
 
     if (!gameOver)
     {
@@ -284,8 +288,10 @@ void MainWindow::submit()
     }
 
     questionBankFile->close();
+    //setQuestionText();
     updateTurns();
 }
+
 
 void MainWindow::updateTurns()
 {
