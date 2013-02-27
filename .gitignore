@@ -1,5 +1,8 @@
 Debug/
+review/
 
 src/Reconstruction.pro.user
 
 *.user
+
+review/.DS_Store

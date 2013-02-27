@@ -5,20 +5,9 @@
 
 MainWindow::MainWindow()
 {
-    valueToWin = 10;
-    player1Turn = true;
-    correctAnswer = false;
+
     gameOver = false;
     questionIDVector = returnQuestionIDVector();
-
-    QLabel *player1Label = new QLabel(tr("Player 1"));
-    QLabel *player2Label = new QLabel(tr("Player 2"));
-
-    player1Score = new QSpinBox;
-    player1Score->setReadOnly(true);
-
-    player2Score = new QSpinBox;
-    player2Score->setReadOnly(true);
 
     questionText = new QTextEdit;
     questionText->setReadOnly(true);
@@ -40,12 +29,6 @@ MainWindow::MainWindow()
     submitButton = new QPushButton(tr("Submit"));
     connect(submitButton, SIGNAL(clicked()), this, SLOT(submit()));
 
-    QGridLayout *scoreLayout = new QGridLayout;
-    scoreLayout->addWidget(player1Label, 0, 0);
-    scoreLayout->addWidget(player1Score, 1, 0);
-    scoreLayout->addWidget(player2Label, 0, 1);
-    scoreLayout->addWidget(player2Score, 1, 1);
-
     QVBoxLayout *answerLayout = new QVBoxLayout;
     answerLayout->addWidget(questionText);
     answerLayout->addWidget(answer1);
@@ -55,7 +38,6 @@ MainWindow::MainWindow()
     answerLayout->addWidget(submitButton);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->addLayout(scoreLayout);
     mainLayout->addLayout(answerLayout);
 
     centralWidget = new QWidget;
@@ -63,7 +45,7 @@ MainWindow::MainWindow()
 
     setCentralWidget(centralWidget);
 
-    setWindowTitle(tr("Reconstruction"));
+    setWindowTitle(tr("OpenReview"));
 
     setQuestionText();
 
@@ -107,21 +89,6 @@ int MainWindow::returnRandomNumber(int nMax)
 
 void MainWindow::setQuestionText()
 {
-    QMessageBox playerWins;
-
-    if (player2Score->value() >= valueToWin && player1Score->value() < player2Score->value())
-    {
-        playerWins.setText("Congratulations, Player 2! You win!");
-        playerWins.exec();
-        gameOver = true;
-    }
-
-    else if (player1Score->value() >= valueToWin && player2Score->value() <= player1Score->value() - 1 && player1Turn)
-    {
-        playerWins.setText("Congratulations, Player 1! You win!");
-        playerWins.exec();
-        gameOver = true;
-    }
 
     if (!gameOver)
     {
@@ -284,33 +251,5 @@ void MainWindow::submit()
     }
 
     questionBankFile->close();
-    updateTurns();
-}
-
-void MainWindow::updateTurns()
-{
-    if (player1Turn)
-    {
-        player1Turn = false;
-        player2Turn = true;
-        if (correctAnswer)
-        {
-            int player1CurrentScore = player1Score->value();
-            player1CurrentScore++;
-            player1Score->setValue(player1CurrentScore);
-        }
-    }
-    else
-    {
-        player1Turn = true;
-        player2Turn = false;
-        if (correctAnswer)
-        {
-            int player2CurrentScore = player2Score->value();
-            player2CurrentScore++;
-            player2Score->setValue(player2CurrentScore);
-        }
-    }
-
     setQuestionText();
 }
