@@ -103,7 +103,8 @@ int MainWindow::returnRandomNumber(int nMax)
 void MainWindow::setQuestionText()
 {
 
-    int questionID = returnRandomNumber(questionIDVector.size());
+    int questionLocationID = returnRandomNumber(questionIDVector.size());
+    int questionID = questionIDVector.at(questionLocationID);
 
     QMessageBox msgBox;
 
