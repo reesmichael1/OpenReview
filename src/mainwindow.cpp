@@ -109,7 +109,7 @@ void MainWindow::setQuestionText()
 {
     QMessageBox playerWins;
 
-    if (player2Score->value() >= 10 && player1Score->value() < player2Score->value() - 1)
+    if (player2Score->value() >= 10 && player1Score->value() < player2Score->value())
     {
         playerWins.setText("Congratulations, Player 2! You win!");
         playerWins.exec();

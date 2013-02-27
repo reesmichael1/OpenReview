@@ -1,0 +1,25 @@
+1,Whose election was the result of negotiations that led to the end of Reconstruction?,Abraham Lincoln,Ulysses S. Grant,Rutherford B. Hayes,Andrew Johnson,3
+2,What percentage of registered voters were required to take the oath of loyalty for a state to be readmitted to the Union under Lincoln's plan?,5,10,25,50,2
+3,What was the first state to be readmitted to the Union?,Tennessee,Texas,Mississippi,Louisiana,1
+4,What was the last state to be readmitted to the Union?,Tennessee,Texas,Mississippi,Louisiana,2
+5,What was found in Lincoln's pocket when he was assassinated?,5 cents of Confederate change,5 cents in US change,5 dollars in US currency, 5 dollars in Confederate currency,4
+6,Who was Lincoln's vice president?,Rutherford B. Hayes,John Brown,Frederick Douglass,Andrew Johnson,4
+7,Who was the assassin of Abraham Lincoln?,Lee Harvey Oswald,John Brown,John Wilkes Booth,John Quincy Adams,3
+8,What state was the last state in which federal troops were stationed?,South Carolina,Florida,Louisiana,Texas,1
+9,What did the 13th Amendment say?,Guaranteed equal protection under the law,Gave women the right to vote,Gave freed slave (men) the right to vote,Ended Slavery,4
+10,What did the 14th Amendment say?,Guaranteed equal protection under the law,Gave women the right to vote,Gave freed slave (men) the right to vote,Ended Slavery,1
+11,What did the 15th Amendment say?,Guaranteed equal protection under the law,Gave women the right to vote,Gave freed slave (men) the right to vote,Ended Slavery,3
+12,Which state did NOT move towards readmission under Lincoln's plan?,Arkansas,South Carolina,Tennessee,Virginia,2
+13,Who led the Radical Republicans?,Sumner/Sumner,Stevens/Shorta,Sumner/Stevens,Sumner/Shorta,3
+14,What did Lincoln do to the Wade-Davis bill?,Pocket veto,Regular veto,Sign into law,Nothing,1
+15,What percentage of registered voters were required to take the oath of loyalty for a state to be readmitted under the Wade-Davis Bill?,5,10,25,50,4
+16,Who was Lincoln's opponent in the 1865 election?,Ulysses S. Grant,George McClellan,Rutherford B. Hayes,Andrew Johnson,2
+17,Who was the only Southern Senator to remain loyal to the Union during the Civil War?,John C. Calhoun,Henry Clay,Noah Webster,Andrew Johnson,4
+18,What was the first ever act enacted over a presidential veto?,Civil Rights Act,Reconstruction Act,14th Amendment,15th Amendment,1
+19,How many districts were created by the Military Reconstruction Act?,3,4,5,6,3
+20,How many states were in Military District 5?,1,2,3,4,1
+21,Andrew Johnson was impeached for removing whom from office?,Edwin Stanton,William Seward,John C. Calhoun,Henry Clay,1
+22,How many acres were freed slaves promised?,25,30,35,40,4
+23,In what year was the 15th Amendment ratified?,1865,1870,1875,1880,2
+24,Who were the Scalawags?,Grant's Administration,Republican Party,White Southern Republicans,White Southern Democrats,3
+25,How many days did the NYSE close for?,6,8,10,12,3
