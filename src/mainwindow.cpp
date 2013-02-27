@@ -1,5 +1,6 @@
 #include <QtGui>
 #include <QFile>
+#include <time.h>
 #include "mainwindow.h"
 
 MainWindow::MainWindow()
@@ -91,25 +92,22 @@ QVector<int> MainWindow::returnQuestionIDVector()
 
 int MainWindow::returnRandomNumber(int nMax)
 {
-    QMessageBox msgBox;
-    msgBox.setText(tr("Now entering returnRandomNumber(). nMax is %1.").arg(nMax));
-    msgBox.exec();
 
     time_t seconds;
     time(&seconds);
     srand((unsigned int) seconds);
 
     int nRandomNumber = rand() % nMax;
-    nRandomNumber++;
+    nRandomNumber;
+
     return nRandomNumber;
 
-    msgBox.setText(tr("Now leaving returnRandomNumber(). nRandomNumber is %1.").arg(nRandomNumber));
 }
 
 void MainWindow::setQuestionText()
 {
 
-    if (questionIDVector.size() != 0)
+    if (questionIDVector.size() > 1)
     {
 
         int questionLocationID = returnRandomNumber(questionIDVector.size());
