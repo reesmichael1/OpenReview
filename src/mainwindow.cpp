@@ -5,6 +5,7 @@
 
 MainWindow::MainWindow()
 {
+    valueToWin = 10;
     player1Turn = true;
     correctAnswer = false;
     gameOver = false;
@@ -21,8 +22,8 @@ MainWindow::MainWindow()
 
     questionText = new QTextEdit;
     questionText->setReadOnly(true);
-    questionText->setMaximumWidth(200);
-    questionText->setFixedWidth(240);
+    questionText->setMaximumWidth(300);
+    questionText->setFixedWidth(350);
 
     answer1 = new QCheckBox;
     answer1->setAutoExclusive(true);
@@ -99,7 +100,6 @@ int MainWindow::returnRandomNumber(int nMax)
     srand((unsigned int) seconds);
 
     int nRandomNumber = rand() % nMax;
-    nRandomNumber;
 
     return nRandomNumber;
 
@@ -109,14 +109,14 @@ void MainWindow::setQuestionText()
 {
     QMessageBox playerWins;
 
-    if (player2Score->value() >= 10 && player1Score->value() < player2Score->value())
+    if (player2Score->value() >= valueToWin && player1Score->value() < player2Score->value())
     {
         playerWins.setText("Congratulations, Player 2! You win!");
         playerWins.exec();
         gameOver = true;
     }
 
-    else if (player1Score->value() >= 10 && player2Score->value() < player1Score->value() - 1)
+    else if (player1Score->value() >= valueToWin && player2Score->value() <= player1Score->value() - 1 && player1Turn)
     {
         playerWins.setText("Congratulations, Player 1! You win!");
         playerWins.exec();
