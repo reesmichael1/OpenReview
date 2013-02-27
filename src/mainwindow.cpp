@@ -91,6 +91,10 @@ QVector<int> MainWindow::returnQuestionIDVector()
 
 int MainWindow::returnRandomNumber(int nMax)
 {
+    QMessageBox msgBox;
+    msgBox.setText(tr("Now entering returnRandomNumber(). nMax is %1.").arg(nMax));
+    msgBox.exec();
+
     time_t seconds;
     time(&seconds);
     srand((unsigned int) seconds);
@@ -98,58 +102,60 @@ int MainWindow::returnRandomNumber(int nMax)
     int nRandomNumber = rand() % nMax;
     nRandomNumber++;
     return nRandomNumber;
+
+    msgBox.setText(tr("Now leaving returnRandomNumber(). nRandomNumber is %1.").arg(nRandomNumber));
 }
 
 void MainWindow::setQuestionText()
 {
 
-    int questionLocationID = returnRandomNumber(questionIDVector.size());
-    int questionID = questionIDVector.at(questionLocationID);
-
-    QMessageBox msgBox;
-
-    /*for (int i = 0; i < questionIDVector.size(); i++)
+    if (questionIDVector.size() != 0)
     {
 
-    }*/
-    int i = 0;
+        int questionLocationID = returnRandomNumber(questionIDVector.size());
+        int questionID = questionIDVector.at(questionLocationID);
+
+        int i = 0;
         while (questionIDVector.at(i) != questionID)
         {
-            msgBox.setText(tr("i is %1. questionIDVector.at(i) is %2. questionID is %3")
-                           .arg(i).arg(questionIDVector.at(i)).arg(questionID));
-            msgBox.exec();
             i++;
         }
-            questionIDVector.remove(i);
-    //}
+        questionIDVector.remove(i);
 
-    QFile *questionBankFile = new QFile("questionbank.txt");
-    dataStream = new QTextStream(questionBankFile);
+        QFile *questionBankFile = new QFile("questionbank.txt");
+        dataStream = new QTextStream(questionBankFile);
 
-    questionBankFile->open(QIODevice::Text | QIODevice::ReadOnly);
+        questionBankFile->open(QIODevice::Text | QIODevice::ReadOnly);
 
-    QStringList dataList;
-    QString dataString = dataStream->readLine();
-    while (dataString != "")
-    {
-        dataList = dataString.split(',');
-        if (dataList.at(0).toInt() == questionID)
+        QStringList dataList;
+        QString dataString = dataStream->readLine();
+        while (dataString != "")
         {
-            questionText->setText(dataList.at(1));
-            answer1->setText(dataList.at(2));
-            answer2->setText(dataList.at(3));
-            answer3->setText(dataList.at(4));
-            answer4->setText(dataList.at(5));
-            dataString = dataStream->readLine();
             dataList = dataString.split(',');
-        }
-        else
-        {
-            dataString = dataStream->readLine();
-            dataList = dataString.split(',');
+            if (dataList.at(0).toInt() == questionID)
+            {
+                questionText->setText(dataList.at(1));
+                answer1->setText(dataList.at(2));
+                answer2->setText(dataList.at(3));
+                answer3->setText(dataList.at(4));
+                answer4->setText(dataList.at(5));
+                dataString = dataStream->readLine();
+                dataList = dataString.split(',');
+            }
+            else
+            {
+                dataString = dataStream->readLine();
+                dataList = dataString.split(',');
+            }
         }
     }
 
+    else
+    {
+        QMessageBox endBankError;
+        endBankError.setText(tr("Error: You have reached the end of the question bank."));
+        endBankError.exec();
+    }
 }
 
 void MainWindow::submit()
