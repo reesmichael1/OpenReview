@@ -7,7 +7,8 @@ MainWindow::MainWindow()
 {
     player1Turn = true;
     correctAnswer = false;
-    returnQuestionIDVector();
+    gameOver = false;
+    questionIDVector = returnQuestionIDVector();
 
     QLabel *player1Label = new QLabel(tr("Player 1"));
     QLabel *player2Label = new QLabel(tr("Player 2"));
@@ -106,8 +107,24 @@ int MainWindow::returnRandomNumber(int nMax)
 
 void MainWindow::setQuestionText()
 {
+    QMessageBox playerWins;
 
-    if (questionIDVector.size() > 1)
+    if (player2Score->value() >= 10 && player1Score->value() < player2Score->value() - 1)
+    {
+        playerWins.setText("Congratulations, Player 2! You win!");
+        playerWins.exec();
+        gameOver = true;
+    }
+
+    else if (player1Score->value() >= 10 && player2Score->value() < player1Score->value() - 1)
+    {
+        playerWins.setText("Congratulations, Player 1! You win!");
+        playerWins.exec();
+        gameOver = true;
+    }
+
+
+    if (!questionIDVector.isEmpty())
     {
 
         int questionLocationID = returnRandomNumber(questionIDVector.size());
@@ -147,13 +164,15 @@ void MainWindow::setQuestionText()
             }
         }
     }
-
     else
     {
         QMessageBox endBankError;
         endBankError.setText(tr("Error: You have reached the end of the question bank."));
         endBankError.exec();
+
+        gameOver = true;
     }
+
 }
 
 void MainWindow::submit()

@@ -20,6 +20,7 @@ public slots:
 private:
     bool player1Turn;
     bool player2Turn;
+    bool gameOver;
     bool correctAnswer;
     QVector<int> questionIDVector;
     QPushButton *submitButton;
