@@ -18,6 +18,10 @@ public slots:
     void submit();
 
 private:
+    bool player1Turn;
+    bool player2Turn;
+    bool correctAnswer;
+    QVector<int> questionIDVector;
     QPushButton *submitButton;
     QSpinBox *player1Score;
     QSpinBox *player2Score;
@@ -30,8 +34,9 @@ private:
     QWidget *centralWidget;
     QVector<int> returnQuestionIDVector();
     void readQuestionFromFile();
-    void setQuestionText(QVector<int> questionIDVector);
+    void setQuestionText();
     void enterGameplay();
+    void updateTurns();
     int returnRandomNumber(int nMax);
 };
 

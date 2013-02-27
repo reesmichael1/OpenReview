@@ -4,6 +4,10 @@
 
 MainWindow::MainWindow()
 {
+    player1Turn = true;
+    correctAnswer = false;
+    questionIDVector = returnQuestionIDVector();
+
     QLabel *player1Label = new QLabel(tr("Player 1"));
     QLabel *player2Label = new QLabel(tr("Player 2"));
 
@@ -64,8 +68,6 @@ MainWindow::MainWindow()
 
 QVector<int> MainWindow::returnQuestionIDVector()
 {
-    QVector<int> IDVector;
-
     QFile *questionBankFile = new QFile("questionbank.txt");
     dataStream = new QTextStream(questionBankFile);
     questionBankFile->open(QIODevice::Text | QIODevice::ReadOnly);
@@ -78,13 +80,13 @@ QVector<int> MainWindow::returnQuestionIDVector()
         while (dataString != "")
         {
             dataList = dataString.split(",");
-            IDVector.append(dataList.at(0).toInt());
+            questionIDVector.append(dataList.at(0).toInt());
             dataString = dataStream->readLine();
         }
     }
 
     questionBankFile->close();
-    return IDVector;
+    return questionIDVector;
 }
 
 int MainWindow::returnRandomNumber(int nMax)
@@ -98,19 +100,19 @@ int MainWindow::returnRandomNumber(int nMax)
     return nRandomNumber;
 }
 
-void MainWindow::setQuestionText(QVector<int> questionIDVector)
+void MainWindow::setQuestionText()
 {
 
     int questionID = returnRandomNumber(questionIDVector.size());
-    /*
-    for (int i = 0; questionIDVector.at(i); i++)
+
+    for (int i = 0; i < questionIDVector.size(); i++)
     {
         if (questionIDVector.at(i) == questionID)
         {
             questionIDVector.remove(i);
         }
     }
-    */
+
 
     QFile *questionBankFile = new QFile("questionbank.txt");
     dataStream = new QTextStream(questionBankFile);
@@ -143,8 +145,7 @@ void MainWindow::setQuestionText(QVector<int> questionIDVector)
 
 void MainWindow::enterGameplay()
 {
-    QVector<int> questionIDVector = returnQuestionIDVector();
-    setQuestionText(questionIDVector);
+    setQuestionText();
 }
 
 void MainWindow::submit()
@@ -174,6 +175,7 @@ void MainWindow::submit()
         {
             answerResult.setText("Correct!");
             answerResult.exec();
+            correctAnswer = true;
         }
 
         else
@@ -181,7 +183,10 @@ void MainWindow::submit()
             answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
                                  .arg(dataList.at(2)));
             answerResult.exec();
+            correctAnswer = false;
         }
+
+        answer1->setChecked(false);
     }
         break;
 
@@ -191,6 +196,7 @@ void MainWindow::submit()
         {
             answerResult.setText("Correct!");
             answerResult.exec();
+            correctAnswer = true;
         }
 
         else
@@ -198,7 +204,9 @@ void MainWindow::submit()
             answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
                                  .arg(dataList.at(3)));
             answerResult.exec();
+            correctAnswer = false;
         }
+        answer2->setChecked(false);
     }
         break;
 
@@ -209,6 +217,7 @@ void MainWindow::submit()
         {
             answerResult.setText("Correct!");
             answerResult.exec();
+            correctAnswer = true;
         }
 
         else
@@ -216,7 +225,9 @@ void MainWindow::submit()
             answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
                                  .arg(dataList.at(4)));
             answerResult.exec();
+            correctAnswer = false;
         }
+        answer3->setChecked(false);
     }
         break;
 
@@ -226,6 +237,7 @@ void MainWindow::submit()
         {
             answerResult.setText("Correct!");
             answerResult.exec();
+            correctAnswer = true;
         }
 
         else
@@ -233,11 +245,42 @@ void MainWindow::submit()
             answerResult.setText(tr("Sorry, that's not correct. The correct answer is:\n%1")
                                  .arg(dataList.at(5)));
             answerResult.exec();
+            correctAnswer = false;
         }
+        answer4->setChecked(false);
     }
         break;
 
     }
 
     questionBankFile->close();
+    updateTurns();
+}
+
+void MainWindow::updateTurns()
+{
+    if (player1Turn)
+    {
+        player1Turn = false;
+        player2Turn = true;
+        if (correctAnswer)
+        {
+            int player1CurrentScore = player1Score->value();
+            player1CurrentScore++;
+            player1Score->setValue(player1CurrentScore);
+        }
+    }
+    else
+    {
+        player1Turn = true;
+        player2Turn = false;
+        if (correctAnswer)
+        {
+            int player2CurrentScore = player2Score->value();
+            player2CurrentScore++;
+            player2Score->setValue(player2CurrentScore);
+        }
+    }
+
+    setQuestionText();
 }

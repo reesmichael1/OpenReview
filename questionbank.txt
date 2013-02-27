@@ -1,4 +1,8 @@
 1,Whose election was the result of negotiations that led to the end of Reconstruction?,Abraham Lincoln,Ulysses S. Grant,Rutherford B. Hayes,Andrew Johnson,3
-2,What percentage of registered voters were required to take the oath of loyalty for a state to be readmitted to the Union under Licoln's plan?,5,10,25,50,2
+2,What percentage of registered voters were required to take the oath of loyalty for a state to be readmitted to the Union under Lincoln's plan?,5,10,25,50,2
 3,What was the first state to be readmitted to the Union?,Tennessee,Texas,Mississippi,Louisiana,1
 4,What was the last state to be readmitted to the Union?,Tennessee,Texas,Mississippi,Louisiana,2
+5,What was found in Lincoln's pocket when he was assassinated?,5 cents of Confederate change,5 cents in US change,5 dollars in US currency, 5 dollars in Confederate currency,4
+6,Who was Lincoln's vice president?,Rutherford B. Hayes,John Brown,Frederick Douglass,Andrew Johnson,4
+7,Who was the assassin of Abraham Lincoln?,Lee Harvey Oswald,John Brown,John Wilkes Booth,John Quincy Adams,3
+8,What state was the last state in which federal troops were stationed?,South Carolina,Florida,Louisiana,Texas,1
